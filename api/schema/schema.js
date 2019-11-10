@@ -1,7 +1,7 @@
 const graphql = require("graphql");
 const _ = require("lodash");
-const Book = require("../../db/models/book");
-const Author = require("../../db/models/author");
+const Book = require("../db/models/book");
+const Author = require("../db/models/author");
 
 const {
   GraphQLObjectType,
@@ -100,7 +100,47 @@ const RootQuery = new GraphQLObjectType({
   })
 });
 
+//  Mutations run queries to update/delete/insert data into our DB
+const Mutation = new GraphQLObjectType({
+  name: "Mutation",
+  fields: () => ({
+    addAuthor: {
+      type: AuthorType,
+      args: {
+        name: { type: GraphQLString },
+        age: { type: GraphQLInt }
+      },
+      resolve(parent, args) {
+        //  get author from our DB schema
+        let author = new Author({
+          name: args.name,
+          age: args.age
+        });
+        //  Save author to our mongoDB
+        return author.save();
+      }
+    },
+    addBook: {
+      type: BookType,
+      args: {
+        name: { type: GraphQLString },
+        genre: { type: GraphQLString },
+        authorId: { type: GraphQLID }
+      },
+      resolve(parent, args) {
+        let book = new Book({
+          name: args.name,
+          genre: args.genre,
+          authorId: args.authorId
+        });
+        return book.save();
+      }
+    }
+  })
+});
+
 module.exports = new GraphQLSchema({
   // Defining the queries we can use from the FE
-  query: RootQuery
+  query: RootQuery,
+  mutation: Mutation
 });
