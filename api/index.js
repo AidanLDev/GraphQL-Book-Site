@@ -4,15 +4,12 @@ const graphqlHTTP = require("express-graphql");
 const schema = require("./schema/schema");
 const mongoose = require("mongoose");
 const config = require("config");
-// const DBPassword = require("./dbpw");
+const cors = require("cors");
 
 const app = express();
 
-/*
-//  Save the following (with your DB users PW) in a javaScript file called dbpw
-  const pw = "<your PW>";
-  module.exports = pw;
-*/
+//  Allow cross-origin requests
+app.use(cors());
 
 /*  Connecting to MongoDB  */
 const db = config.get("mongoURI");
@@ -25,9 +22,6 @@ mongoose
   })
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.error(err));
-// mongoose.connect(
-//   `mongodb+srv://aidanrw${DBPassword}@graphql-vowny.mongodb.net/test?retryWrites=true&w=majority`
-// );
 
 mongoose.connection.once("open", () => {
   console.log("connected to database");
