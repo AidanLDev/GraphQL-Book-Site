@@ -36,8 +36,8 @@ const BookType = new GraphQLObjectType({
     author: {
       type: AuthorType,
       resolve(parent, args) {
-        // Parent refers to the book
-        // return _.find(authors, { id: parent.authorId });
+        // Parent refers to the book collection
+        return Author.findById(parent.authorId);
       }
     }
   })
@@ -53,7 +53,7 @@ const AuthorType = new GraphQLObjectType({
       // Use GraphQL list if theres a many to one relationship (1 author might have a lot of books in the DB)
       type: new GraphQLList(BookType),
       resolve(parent, args) {
-        // return _.filter(books, { authorId: parent.id });
+        return Book.find({ authorId: parent.id });
       }
     }
   })
@@ -71,15 +71,15 @@ const RootQuery = new GraphQLObjectType({
       },
       // Resolve, the function to query the DB/any other data source
       resolve(parent, args) {
-        // args.id
-        // return _.find(books, { id: args.id });
+        return Book.findById(args.id);
       }
     },
     // Get a list of all books
     books: {
       type: new GraphQLList(BookType),
       resolve(parent, args) {
-        // return books;
+        // Empty object = get everything
+        return Book.find({});
       }
     },
     author: {
@@ -88,13 +88,13 @@ const RootQuery = new GraphQLObjectType({
         id: { type: GraphQLID }
       },
       resolve(parent, args) {
-        // return _.find(authors, { id: args.id });
+        return Author.findById(args.id);
       }
     },
     authors: {
       type: new GraphQLList(AuthorType),
       resolve(parent, args) {
-        // return authors;
+        return Author.find({});
       }
     }
   })
