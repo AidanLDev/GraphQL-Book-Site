@@ -23,4 +23,18 @@ body {
     font-size: 20px;
     font-weight: 600;
   }
+  button {
+    background-color: $font-color-primary;
+    height: 35px;
+    border-radius: 10px 10px;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: "Public Sans", Helvetica, sans-serif;
+    color: $primary-color;
+    border: 1px solid $grey;
+    &:hover,
+    &:focus {
+      border: 1px solid $green;
+    }
+  }
 }

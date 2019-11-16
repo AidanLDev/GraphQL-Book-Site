@@ -1,9 +1,14 @@
 @import "../../styles/variables.scss";
 
 .addBook {
+  h1 {
+    display: flex;
+    justify-content: center;
+  }
   .form {
     display: flex;
     flex-direction: column;
+    align-items: center;
     input {
       width: 200px;
       height: 20px;
@@ -17,6 +22,10 @@
     }
     select:focus {
       border: 2px solid $green;
+    }
+    button {
+      width: 204px;
+      margin: 15px 0 0 0;
     }
   }
 }
