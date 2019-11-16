@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
-import "./index.scss";
+import "./styles/global.scss";
 import App from "./containers/App";
 
 // Apollo client setup

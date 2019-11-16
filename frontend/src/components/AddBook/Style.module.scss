@@ -1,0 +1,16 @@
+@import "../../styles/variables.scss";
+
+.addBook {
+  .form {
+    display: flex;
+    flex-direction: column;
+    input {
+      width: 200px;
+      height: 20px;
+    }
+    input:focus {
+      border: 2px solid $green;
+      background-color: $light-blue;
+    }
+  }
+}

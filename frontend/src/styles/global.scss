@@ -1,4 +1,4 @@
-@import "./styles/variables.scss";
+@import "./variables.scss";
 
 body {
   background-color: $primary-color;
@@ -6,11 +6,21 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
-  h1 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: $secondary-color;
   }
   p,
   ul {
-    color: $font-color;
+    color: $font-color-primary;
+  }
+  label {
+    color: $font-color-secondary;
+    font-size: 20px;
+    font-weight: 600;
   }
 }
