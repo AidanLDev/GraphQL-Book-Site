@@ -11,6 +11,8 @@ const authorList = props => {
     if (data.loading) {
       // TODO: Replace me with a loader
       return <p>Loading Authors.....</p>;
+    } else if (data.loading === false && data.authors === undefined) {
+      return <p>No data...</p>;
     } else {
       return data.authors.map(author => (
         <li key={author.id}>

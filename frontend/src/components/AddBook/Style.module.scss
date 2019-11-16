@@ -10,7 +10,13 @@
     }
     input:focus {
       border: 2px solid $green;
-      background-color: $light-blue;
+    }
+    select {
+      width: 204px;
+      height: 26px;
+    }
+    select:focus {
+      border: 2px solid $green;
     }
   }
 }

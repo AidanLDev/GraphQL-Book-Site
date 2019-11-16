@@ -11,6 +11,8 @@ const bookList = props => {
     if (data.loading) {
       // TODO: Spinner here
       return <p>Loading books...</p>;
+    } else if (data.loading === false && data.books === undefined) {
+      return <p>No data...</p>;
     } else {
       return data.books.map(book => <li key={book.id}>{book.name}</li>);
     }
