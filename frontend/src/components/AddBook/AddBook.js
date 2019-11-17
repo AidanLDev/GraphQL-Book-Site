@@ -11,7 +11,6 @@ const AddBook = props => {
   const [authorId, setAuthorId] = useState("");
 
   const displayAuthors = () => {
-    console.log(props);
     let data = props.getAuthorsQuery;
     if (data.loading) {
       // TODO: Replace me with a spinner
@@ -37,6 +36,9 @@ const AddBook = props => {
 
   const handleSubmitForm = e => {
     e.preventDefault();
+    props.addBookMutation({
+      variables: { name, genre, authorId }
+    });
   };
 
   return (
@@ -60,7 +62,7 @@ const AddBook = props => {
           <option disabled>Select an author</option>
           {displayAuthors()}
         </select>
-
+        {/* Add toast */}
         <button>ADD</button>
       </form>
     </div>

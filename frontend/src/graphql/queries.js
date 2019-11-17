@@ -20,9 +20,10 @@ export const getAuthorsQuery = gql`
   }
 `;
 
+// params in mutation is what we pass to the addBookMutation in the React component
 export const addBookMutation = gql`
-  mutation {
-    addBook(name: "", genre: "", authorId: "") {
+  mutation($name: String!, $genre: String!, $authorId: ID!) {
+    addBook(name: $name, genre: $genre, authorId: $authorId) {
       name
       id
     }
