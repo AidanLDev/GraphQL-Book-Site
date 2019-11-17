@@ -10,8 +10,12 @@ const BookDetails = props => {
       return (
         <div>
           <h2>{book.name}</h2>
-          <p>Genre: {book.genre}</p>
-          <p>Author: {book.author.name}</p>
+          <p>
+            <b>Genre:</b> {book.genre}
+          </p>
+          <p>
+            <b>Author:</b> {book.author.name}
+          </p>
           <p>Other books by {book.author.name}</p>
           <ul className={styles.otherBooks}>
             {book.author.books.map(item => (
@@ -22,6 +26,8 @@ const BookDetails = props => {
           </ul>
         </div>
       );
+    } else {
+      return <h3>Click a title for more details</h3>;
     }
   };
 

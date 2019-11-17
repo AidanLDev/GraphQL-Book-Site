@@ -53,7 +53,7 @@ const AddBook = props => {
 
   return (
     <div className={styles.addBook}>
-      <h1>Add book</h1>
+      <h1>Add a book</h1>
       <form className={styles.form} onSubmit={handleSubmitForm}>
         <label>Book name</label>
         <input

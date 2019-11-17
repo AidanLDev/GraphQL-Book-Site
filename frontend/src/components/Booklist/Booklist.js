@@ -31,8 +31,8 @@ const BookList = props => {
   return (
     <div className={styles.bookList}>
       <h1>To read list</h1>
-      <h3>Click for book details</h3>
-      <ul>{displayBooks()}</ul>
+      {/* <h3>Click titles for book details</h3> */}
+      <ul className={styles.list}>{displayBooks()}</ul>
       <BookDetails bookId={selectedBook} />
     </div>
   );
