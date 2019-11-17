@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { graphql } from "react-apollo";
 import { flowRight } from "lodash";
-import { getAuthorsQuery, addBookMutation } from "../../graphql/queries";
+import {
+  getAuthorsQuery,
+  addBookMutation,
+  getBooksQuery
+} from "../../graphql/queries";
 
 import styles from "./Style.module.scss";
 
@@ -36,8 +40,14 @@ const AddBook = props => {
 
   const handleSubmitForm = e => {
     e.preventDefault();
+    // To fetch the booklist after updating the db table use 'refetchQueries'
     props.addBookMutation({
-      variables: { name, genre, authorId }
+      variables: { name, genre, authorId },
+      refetchQueries: [
+        {
+          query: getBooksQuery
+        }
+      ]
     });
   };
 
@@ -69,7 +79,7 @@ const AddBook = props => {
   );
 };
 
-// Use compose to bind multiple graphQL queries to the AddBook component
+// Use flowRight to bind multiple graphQL queries to the AddBook component
 export default flowRight(
   graphql(getAuthorsQuery, { name: "getAuthorsQuery" }),
   graphql(addBookMutation, { name: "addBookMutation" })

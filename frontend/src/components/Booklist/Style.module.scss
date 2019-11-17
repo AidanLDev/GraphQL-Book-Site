@@ -1,4 +1,10 @@
 @import "../../styles/variables.scss";
 
 .bookList {
+  ul {
+    li {
+      cursor: pointer;
+      width: fit-content;
+    }
+  }
 }
