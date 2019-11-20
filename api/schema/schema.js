@@ -1,7 +1,10 @@
 const graphql = require("graphql");
+const mongoose = require("mongoose");
 const _ = require("lodash");
 const Book = require("../db/models/book");
 const Author = require("../db/models/author");
+
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const {
   GraphQLObjectType,
@@ -120,6 +123,32 @@ const Mutation = new GraphQLObjectType({
           authorId: args.authorId
         });
         return book.save();
+      }
+    },
+    editBook: {
+      type: BookType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        genre: { type: new GraphQLNonNull(GraphQLString) },
+        authorId: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(parent, args) {
+        let book = {
+          name: args.name,
+          genre: args.genre,
+          authorId: args.authorId
+        };
+        return Book.updateOne({ _id: args.id }, { $set: book });
+      }
+    },
+    delteBook: {
+      type: BookType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(parent, args) {
+        return Book.deleteOne({ _id: args.id });
       }
     }
   })
