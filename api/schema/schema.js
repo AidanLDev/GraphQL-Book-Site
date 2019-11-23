@@ -142,7 +142,7 @@ const Mutation = new GraphQLObjectType({
         return Book.updateOne({ _id: args.id }, { $set: book });
       }
     },
-    delteBook: {
+    deleteBook: {
       type: BookType,
       args: {
         id: { type: new GraphQLNonNull(GraphQLID) }
